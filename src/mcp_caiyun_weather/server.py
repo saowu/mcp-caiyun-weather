@@ -5,7 +5,7 @@ import httpx
 from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 
-mcp = FastMCP("caiyun-weather", dependencies=["mcp[cli]"])
+mcp = FastMCP("caiyun-weather", port=8000, dependencies=["mcp[cli]"])
 
 api_token = os.getenv("CAIYUN_WEATHER_API_TOKEN")
 
@@ -205,4 +205,4 @@ Description: {alert.get("description", "N/A")}
 
 
 def main():
-    mcp.run()
+    mcp.run(transport="sse")
